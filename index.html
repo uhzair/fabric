@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/jquery-ui.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet" />
+
+    <title>Fabric JS</title>
+</head>
+<body>
+
+<div class="container-fluid">
+
+    <h1 class="mt-2">Fabric</h1>
+    <div class="row px-3 py-2">
+        <div class="col-lg-1 col-md-6 border p-1 text-center sectionDiv">
+            <div class="nav flex-column nav-pills mt-1" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <a class="nav-link active" id="v-pills-text-tab" data-toggle="pill" href="#v-pills-text" role="tab" aria-controls="v-pills-text" aria-selected="true">Text</a>
+                <a class="nav-link" id="v-pills-image-tab" data-toggle="pill" href="#v-pills-image" role="tab" aria-controls="v-pills-image" aria-selected="false">Image</a>
+                <a class="nav-link" id="v-pills-shapes-tab" data-toggle="pill" href="#v-pills-shapes" role="tab" aria-controls="v-pills-shapes" aria-selected="false">Shapes</a>
+                <a class="nav-link" id="v-pills-layers-tab" data-toggle="pill" href="#v-pills-layers" role="tab" aria-controls="v-pills-layers" aria-selected="false">Layers</a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 border p-1 sectionDiv">
+            <div class="tab-content px-2" id="v-pills-tabContent">
+                <!-- Text Tab -->
+                <div class="tab-pane fade show active scrollable" id="v-pills-text" role="tabpanel" aria-labelledby="v-pills-text-tab">
+                    <button id="addText" class="col-sm-12 btn btn-info mt-1">Add Text</button>
+                    <button id="closeTextForm" class="col-sm-12 btn btn-info mt-1">Back</button>
+                    <div id="textForm">
+                        <h2 class="text-center mt-1">Add Text</h2>
+                        <div class="form-group">
+                            <label for="textContent">Enter Text</label>
+                            <textarea id="textContent" class="form-control" rows="3" autocomplete="off"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <div class="dropdown">
+                                <button class="form-control btn btn-secondary btn-sm dropdown-toggle" type="button" id="ffDropdownBtn" data-toggle="dropdown">
+                                    Font Family
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="ffDropdownBtn">
+                                    <a class="dropdown-item fontApply" href="#">Arial</a>
+                                    <a class="dropdown-item fontApply" href="#">Arial Black</a>
+                                    <a class="dropdown-item fontApply" href="#">Calibri</a>
+                                    <a class="dropdown-item fontApply" href="#">Stencil</a>
+                                    <a class="dropdown-item fontApply" href="#">Garamond</a>
+                                    <a class="dropdown-item fontApply" href="#">Verdana</a>
+                                    <a class="dropdown-item fontApply" href="#">Georgia</a>
+                                    <a class="dropdown-item fontApply" href="#">Comic Sans MS</a>
+                                    <a class="dropdown-item fontApply" href="#">Trebuchet MS</a>
+                                    <a class="dropdown-item fontApply" href="#">Impact</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-6 d-inline float-left text-center">
+                                <button id="textBold" class="col-sm-3 btn btn-sm btn-info mt-1"><strong>B</strong></button>
+                                <button id="textItalics" class="col-sm-3 btn btn-sm btn-info mt-1"><i>I</i></button>
+                                <button id="textUnderline" class="col-sm-3 btn btn-sm btn-info mt-1"><u>U</u></button>
+                            </div>
+                            <div class="col-sm-6 d-inline float-right text-center">
+                                <button id="align-left" class="col-sm-3 btn btn-sm btn-info mt-1">L</button>
+                                <button id="align-center" class="col-sm-3 btn btn-sm btn-info mt-1">C</button>
+                                <button id="align-right" class="col-sm-3 btn btn-sm btn-info mt-1">R</button>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="form-group mt-3">
+                            <label for="fontSize" class="float-left">Font Size</label>
+                            <span id="fontSizeVal" class="float-right">30</span>
+                            <input id="fontSize" type="range" class="form-control-range" min="1" max="100" value="30" autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <label for="fontColor">Color</label>
+                            <input id="fontColor" type="color" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <!-- Images Tab -->
+                <div class="tab-pane fade scrollable" id="v-pills-image" role="tabpanel" aria-labelledby="v-pills-image-tab">
+                    <div id="addImgForm">
+                        <h2 class="text-center mt-1">Add Images</h2>
+                        <div class="form-group">
+                        <button id="loadImg" class="col-sm-12 btn btn-info">Add Image from URL</button>
+                        <label for="img" class="col-sm-12 btn btn-info mt-1">Upload Image</label>
+                        <input type="file" id="img" class="d-none">
+                        </div>
+                        <div class="form-group">
+                            <div class="form-group mt-1">
+                                <label for="imgSearchTerm">Search Image</label>
+                                <input type="text" id="imgSearchTerm" class="form-control" autocomplete="off"/>
+                            </div>
+                        </div>
+                        <div id="searchResults">
+                            <p id="resultText"></p>
+                            <div id="resultImages"></div>
+                        </div>
+                    </div>
+                    <div id="imgFiltersForm" class="text-center">
+                        <button id="closeImgFiltersForm" class="col-sm-12 btn btn-info mt-1">Back</button>
+                        <h2 class="text-center mt-1">Image Filters</h2>
+                        <button id="applyFilter-0" class="col-sm-5 btn btn-info mt-2">Grayscale</button>
+                        <button id="applyFilter-1" class="col-sm-5 btn btn-info mt-2">Sepia</button>
+                        <button id="applyFilter-2" class="col-sm-5 btn btn-info mt-2">Brownie</button>
+                        <button id="applyFilter-3" class="col-sm-5 btn btn-info mt-2">Vintage</button>
+                        <button id="applyFilter-4" class="col-sm-5 btn btn-info mt-2">Black & White</button>
+                    </div>
+                </div>
+                <!-- Shapes Tab -->
+                <div class="tab-pane fade scrollable text-center" id="v-pills-shapes" role="tabpanel" aria-labelledby="v-pills-shapes-tab">
+                    <h2 class="mt-1">Add Shapes</h2>
+                    <button id="add-Circle" class="col-sm-5 btn btn-info mt-2">Circle</button>
+                    <button id="add-Square" class="col-sm-5 btn btn-info mt-2">Square</button>
+                    <button id="add-Rectangle" class="col-sm-5 btn btn-info mt-2">Rectangle</button>
+                    <button id="add-Triangle" class="col-sm-5 btn btn-info mt-2">Triangle</button>
+                </div>
+                <!-- Layers Tab -->
+                <div class="tab-pane fade scrollable text-center" id="v-pills-layers" role="tabpanel" aria-labelledby="v-pills-layers-tab">
+                    <h2 class="mt-1">Layers</h2>
+                    <ul id="objsList" class="list-group">
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-8 col-md-12 border p-0 sectionDiv">
+            <div class="col-sm-12 m-2">
+                <button id="flip-X" class="btn btn-info btn-sm">Flip X</button>
+                <button id="flip-Y" class="btn btn-info btn-sm">Flip Y</button>
+                <button id="l-Up" class="btn btn-info btn-sm">Layer Up</button>
+                <button id="l-Down" class="btn btn-info btn-sm">Layer Down</button>
+                <button id="clip-circle" class="btn btn-info btn-sm">Clip Circle</button>
+                <button id="clip-rect" class="btn btn-info btn-sm">Clip Rect</button>
+                <button id="unclip" class="btn btn-info btn-sm">Remove Clipping</button>
+            </div>
+            <canvas id="canvas" width="800" height="500"></canvas>
+        </div>
+    </div>
+</div>
+
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/fabric.min.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script src="js/script.js"></script>
+
+</body>
+</html>

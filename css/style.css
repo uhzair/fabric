@@ -1,0 +1,19 @@
+body{
+    background-color: #eaeaea;
+}
+#canvas{
+    background: #0f6674;
+}
+.canvas-container, .upper-canvas, #canvas{
+    width: 100% !important;
+}
+label{
+    margin-bottom: 0;
+}
+.scrollable{
+    max-height:510px;
+    overflow-y: auto;
+}
+.sectionDiv{
+    background-color: #ffffff;
+}
